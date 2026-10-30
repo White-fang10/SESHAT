@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "Note": {
+      "title": "Note",
+      "description": "Collaborative note document modeled after Google Keep with local-first sync and multi-user email collaboration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the note" },
+        "ownerId": { "type": "string", "description": "UID of the note creator" },
+        "ownerEmail": { "type": "string", "description": "Email address of the note creator" },
+        "collaboratorEmails": {
+          "type": "array",
+          "description": "List of collaborator email addresses with access to the note",
+          "items": { "type": "string" }
+        },
+        "collaborators": {
+          "type": "array",
+          "description": "Detailed collaborator metadata (email, role, addedAt)",
+          "items": { "type": "object" }
+        },
+        "title": { "type": "string", "description": "Note title" },
+        "content": { "type": "string", "description": "Text body or markdown content" },
+        "type": { "type": "string", "description": "Note format type: text, checklist, drawing, code, mixed" },
+        "items": { "type": "array", "description": "Checklist items" },
+        "drawings": { "type": "array", "description": "Drawing stroke data and canvas previews" },
+        "images": { "type": "array", "description": "Note image attachments" },
+        "labels": { "type": "array", "description": "Assigned label IDs" },
+        "appearance": { "type": "object", "description": "Customizable styling, colors, and typography" },
+        "isPinned": { "type": "boolean", "description": "Pinned status" },
+        "isStarred": { "type": "boolean", "description": "Starred status" },
+        "isArchived": { "type": "boolean", "description": "Archived status" },
+        "isTrashed": { "type": "boolean", "description": "Trashed status" },
+        "trashedAt": { "type": "number", "description": "Timestamp when moved to trash" },
+        "reminderDate": { "type": "number", "description": "Optional reminder timestamp" },
+        "codeSnippet": { "type": "object", "description": "Optional code block payload" },
+        "isLiveShared": { "type": "boolean", "description": "Whether live real-time editing is enabled via shareable direct note link" },
+        "createdAt": { "type": "number", "description": "Creation timestamp in milliseconds" },
+        "updatedAt": { "type": "number", "description": "Last updated timestamp in milliseconds" },
+        "version": { "type": "number", "description": "Version counter for conflict resolution" }
+      },
+      "required": ["id", "ownerEmail", "title", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Stores user notes and collaborative shared notes accessible by owner or collaborator emails"
+    }
+  }
+}
