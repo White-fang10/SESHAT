@@ -1,0 +1,6 @@
+{
+  "name": "Sesh@",
+  "description": "Sesh@ – Your Ideas. Your Space. A highly customizable, Google Drive and Firebase-powered collaborative notes workspace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
